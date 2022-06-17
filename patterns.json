@@ -1,0 +1,103 @@
+var patterns = {
+    "ruleSets": [
+        {
+            "name": "game of life",
+            "dCount": 2,
+            "width": 3,
+            "rules": [
+                /* example
+                {                  
+                    "before": [
+                        {
+                            "type": "pattern",  
+                            "value": [[1,0,0],
+                                    [0,1,0],
+                                    [0,0,0]]
+                        }
+                    ],
+                    "after": [
+                        {
+                            "type": "pattern",  
+                            "value": [[1,0,0],
+                                    [0,0,0],
+                                    [0,0,0]]
+                        }
+                    ]
+                },*/
+                {
+                    "applies": "live",
+                    "before": [
+                        {
+                            "type": "neighbourCount",
+                            "value": 2,
+                            "operation": "less"
+                        }
+                    ],
+                    "after": [
+                        {
+                            "type": "action",
+                            "value": "delete"
+                        }
+                    ]
+                },
+                {
+                    "applies": "live",
+                    "before": [
+                        {
+                            "type": "neighbourCount",
+                            "value": 2,
+                            "operation": "equals"
+                        },
+                        {
+                            "type": "neighbourCount",
+                            "value": 3,
+                            "operation": "equals"
+                        },
+                        {
+                            "type": "operator",
+                            "value": "or"
+                        },
+                    ],
+                    "after": [
+                        {
+                            "type": "action",
+                            "value": "none"
+                        }
+                    ]
+                },
+                {
+                    "applies": "live",
+                    "before": [
+                        {
+                            "type": "neighbourCount",
+                            "value": 3,
+                            "operation": "greater"
+                        }
+                    ],
+                    "after": [
+                        {
+                            "type": "action",
+                            "value": "delete"
+                        }
+                    ]
+                },
+                {
+                    "applies": "dead",
+                    "before": [
+                        {
+                            "type": "neighbourCount",
+                            "value": 3,
+                            "operation": "equals"
+                        }
+                    ],
+                    "after": [
+                        {
+                            "type": "action",
+                            "value": "create"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
